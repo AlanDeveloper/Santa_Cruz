@@ -8,15 +8,17 @@
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
+                <th scope="col">Telefone</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                @foreach($pacients as $pac) 
-                    <th scope="row">{{ $pac->id }}</th>
-                    <td>{{ $pac->name }}</td>
-                    <td>{{ $pac->email }}</td>
-                @endforeach
+                @for ($i = 0; $i < count($pacients); $i++)
+                    <th scope="row">{{ $i + 1 }}</th>
+                    <td>{{ $pacients[$i]->name }}</td>
+                    <td>{{ $pacients[$i]->email }}</td>
+                    <td>{{ $pacients[$i]->telephone }}</td>
+                @endfor
                 @if (count($pacients) == 0)
                     <th class="text-center" colspan="3" scope="row">Nenhum paciente cadastrado.</th>
                 @endif
