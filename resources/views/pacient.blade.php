@@ -20,7 +20,7 @@
                     <td>{{ $pacients[$i]->telephone }}</td>
                 @endfor
                 @if (count($pacients) == 0)
-                    <th class="text-center" colspan="3" scope="row">Nenhum paciente cadastrado.</th>
+                    <th class="text-center" colspan="4" scope="row">Nenhum paciente cadastrado.</th>
                 @endif
             </tr>
         </tbody>
