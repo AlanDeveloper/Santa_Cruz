@@ -12,6 +12,7 @@ class Pacient extends Model
     public $timestamps = true;
 
     protected $table = 'pacient';
+    protected $primaryKey = 'cpf';
 
     protected $fillable = [
         'cpf',

@@ -18,4 +18,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/paciente', [PacientController::class, 'index']);
+Route::group(['prefix' => 'paciente'], function () {
+    Route::get('/', [PacientController::class, 'index']);
+    Route::post('/', [PacientController::class, 'store']);
+    // Route::put('/{id}', [PacientController::class, 'update']);
+    Route::delete('/{id}', [PacientController::class, 'delete']);
+});
