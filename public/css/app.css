@@ -1,0 +1,10 @@
+.menu a {
+    color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity));
+}
+.menu a:hover {
+    color: inital !important;
+}
+
+.modal-dialog {
+    min-width: 60vw;
+}
