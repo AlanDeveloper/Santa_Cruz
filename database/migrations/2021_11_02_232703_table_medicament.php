@@ -17,9 +17,11 @@ class TableMedicament extends Migration
             $table->increments('id');
 
             $table->string('name', 100);
-            $table->decimal('amount');
+            $table->integer('amount');
             $table->string('description', 500);
             $table->string('cpfNurse', 14);
+
+            $table->foreign('cpfNurse')->references('cpf')->on('nurse');
 
             $table->timestamps();
         });

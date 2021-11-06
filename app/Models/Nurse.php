@@ -22,6 +22,8 @@ class Nurse extends Model
         'email',
         'address',
         'telephone',
+        'collegeAddress',
+        'semester',
     ];
 
     protected $dates = [
