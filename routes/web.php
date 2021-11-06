@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\WithdrawController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MedicamentController;
 use App\Http\Controllers\NurseController;
@@ -56,4 +58,18 @@ Route::group(['prefix' => 'recepcionist'], function () {
     Route::post('/', [RecepcionistController::class, 'store']);
     // Route::put('/{id}', [RecepcionistController::class, 'update']);
     Route::delete('/{id}', [RecepcionistController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'appointment'], function () {
+    Route::get('/', [AppointmentController::class, 'index']);
+    Route::post('/', [AppointmentController::class, 'store']);
+    // Route::put('/{id}', [AppointmentController::class, 'update']);
+    Route::delete('/{id}', [AppointmentController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'withdrawal'], function () {
+    Route::get('/', [WithdrawalController::class, 'index']);
+    Route::post('/', [WithdrawalController::class, 'store']);
+    // Route::put('/{id}', [WithdrawalController::class, 'update']);
+    Route::delete('/{id}', [WithdrawalController::class, 'delete']);
 });

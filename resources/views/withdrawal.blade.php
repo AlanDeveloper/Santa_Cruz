@@ -1,0 +1,140 @@
+@extends('layout')
+
+@section('content')
+<script src="{{ asset('js/jquery.mask.js') }}"></script>
+    <h1 class="mt-5 mb-5">Lista de retiradas</h1>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Retirar Medicamento</button>
+    <script>
+        $(document).ready(function() {
+            $('.cpf-mask').mask('000.000.000-00');
+        });
+        </script>
+        <input type="text" class="cpf-mask">
+    <!-- Modal -->
+    <div class="modal fade" id="modal-cadastrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Formulário de cadastro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/patient" class="row g-3 needs-validation" novalidate>
+                        {{  csrf_field() }}
+                        <div class="col-md-6">
+                            <label for="validationCustom01" class="form-label">Nome completo</label>
+                            <input type="text" name="name" class="form-control" id="validationCustom01" placeholder="Preencha com seu nome" required>
+                            <div class="invalid-feedback">
+                                É necessário preencher o campo corretamente!
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="validationCustomUsername" class="form-label">Email</label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                <input type="email" name="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" placeholder="example@example.com" required>
+                                <div class="invalid-feedback">
+                                    É necessário preencher o campo corretamente!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="validationCustom03" class="form-label">CPF</label>
+                            <input type="text" name="cpf" class="form-control cpf-mask" id="validationCustom03" placeholder="XXX.XXX.XXX-XX" data-mask="000.000.000-00" required>
+                            <div class="invalid-feedback">
+                                É necessário preencher o campo corretamente!
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="validationCustom05" class="form-label">Endereço</label>
+                            <input type="text" name="address" class="form-control" id="validationCustom05" placeholder="Preencha com seu endereço" required>
+                            <div class="invalid-feedback">
+                                É necessário preencher o campo corretamente!
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="validationCustom06" class="form-label">Telefone</label>
+                            <input type="text" name="telephone" class="form-control" id="validationCustom06" placeholder="(XX)XXXXX-XXXX" required>
+                            <div class="invalid-feedback">
+                                É necessário preencher o campo corretamente!
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="validationCustom07" class="form-label">Data de nascimento</label>
+                            <input type="date" name="birth_date" class="form-control" id="validationCustom07" placeholder="Preencha com sua data de nascimento" required>
+                            <div class="invalid-feedback">
+                                É necessário preencher o campo corretamente!
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    @if ($errors->any())
+        <div class="alert alert-danger">Houve um erro ao retirar o medicamento!</div>
+    @endif
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">CPF</th>
+                
+            </tr>
+        </thead>
+      <!--   <tbody>
+            @for ($i = 0; $i < count($patients); $i++)
+                <tr class="align-middle">
+                    <th scope="row">{{ $i + 1 }}</th>
+                    <td>{{ $patients[$i]->name }}</td>
+                    <td>{{ $patients[$i]->email }}</td>
+                    <td>{{ $patients[$i]->telephone }}</td>
+                    <td>{{ $patients[$i]->cpf }}</td>
+                    <td> 
+                        <form method="post" class="delete_form" action="/patient/{{ $patients[$i]->cpf }}">
+                            {{ method_field('DELETE') }}
+                            {{  csrf_field() }}
+                            <button type="submit" class="btn btn-danger">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            @endfor
+
+            @if (count($patients) == 0)
+                <tr class="align-middle">
+                    <th class="text-center" colspan="5" scope="row">Nenhum paciente cadastrado.</th>
+                </tr>
+            @endif
+        </tbody> -->
+    </table>
+
+    <script>
+        (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+            })
+        })()
+    </script>
+@endsection
