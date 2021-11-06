@@ -84,15 +84,15 @@
             </tr>
         </thead>
       <!--   <tbody>
-            @for ($i = 0; $i < count($patients); $i++)
+            @for ($i = 0; $i < count($withdraws); $i++)
                 <tr class="align-middle">
                     <th scope="row">{{ $i + 1 }}</th>
-                    <td>{{ $patients[$i]->name }}</td>
-                    <td>{{ $patients[$i]->email }}</td>
-                    <td>{{ $patients[$i]->telephone }}</td>
-                    <td>{{ $patients[$i]->cpf }}</td>
+                    <td>{{ $withdraws[$i]->name }}</td>
+                    <td>{{ $withdraws[$i]->email }}</td>
+                    <td>{{ $withdraws[$i]->telephone }}</td>
+                    <td>{{ $withdraws[$i]->cpf }}</td>
                     <td> 
-                        <form method="post" class="delete_form" action="/patient/{{ $patients[$i]->cpf }}">
+                        <form method="post" class="delete_form" action="/patient/{{ $withdraws[$i]->cpf }}">
                             {{ method_field('DELETE') }}
                             {{  csrf_field() }}
                             <button type="submit" class="btn btn-danger">Deletar</button>
@@ -101,7 +101,7 @@
                 </tr>
             @endfor
 
-            @if (count($patients) == 0)
+            @if (count($withdraws) == 0)
                 <tr class="align-middle">
                     <th class="text-center" colspan="5" scope="row">Nenhum paciente cadastrado.</th>
                 </tr>
