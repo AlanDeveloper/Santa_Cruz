@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Withdraw;
 
 
-class WithdrawalController extends Controller
+class WithdrawController extends Controller
 {
     public function index() {
         $withdraws = Withdraw::orderBy("id", "desc")->get();

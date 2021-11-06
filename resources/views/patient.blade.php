@@ -1,15 +1,9 @@
 @extends('layout')
 
 @section('content')
-<!-- <script src="{{ asset('js/jquery.mask.js') }}"></script> -->
     <h1 class="mt-5 mb-5">Lista de pacientes</h1>
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar paciente</button>
-    <!-- <script>
-        $(document).ready(function() {
-            $('.cpf-mask').mask('000.000.000-00');
-        });
-    </script> -->
-    <!-- <input type="text" class="cpf-mask"> -->
+
     @include('barSearch')
     @include('modal', ['type' => 'patient'])
     

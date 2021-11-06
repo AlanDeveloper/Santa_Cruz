@@ -1,11 +1,9 @@
 @extends('layout')
 
 @section('content')
-<script src="{{ asset('js/jquery.mask.js') }}"></script>
     <h1 class="mt-5 mb-5">Lista de consultas</h1>
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar Consulta</button>
 
-        <input type="text" class="cpf-mask">
     <!-- Modal -->
     <div class="modal fade" id="modal-cadastrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
