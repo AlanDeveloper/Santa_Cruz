@@ -7,9 +7,12 @@ use App\Models\Medic;
 
 class MedicController extends Controller
 {
-    public function index() {
-        $medics = Medic::orderBy("name", "desc")->get();
-
+    public function index(Request $request) {
+        if ($request->input("search")) {
+            $medics = Medic::where("name", "ILIKE", "%" . $request->input("search") . "%")->orderBy("name", "desc")->get();
+        } else {
+            $medics = Medic::orderBy("name", "desc")->get();
+        }
         return view('medic', ['medics' => $medics]);
     }
 

@@ -8,11 +8,14 @@ use App\Models\Medicament;
 
 class MedicamentController extends Controller
 {
-    public function index() {
-        $medicaments = Medicament::orderBy("medicament.name", "desc")->get();
+    public function index(Request $request) {
+        if ($request->input("search")) {
+            $medicaments = Medicament::where("name", "ILIKE", "%" . $request->input("search") . "%")->orderBy("name", "desc")->get();
+        } else {
+            $medicaments = Medicament::orderBy("name", "desc")->get();
+        }
         /* ->join('nurse', 'medicament.cpfNurse', '=', 'nurse.cpf')
         ->get(); */
-
         return view('medicament', ['medicaments' => $medicaments]);
     }
 

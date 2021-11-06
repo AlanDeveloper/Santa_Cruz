@@ -7,9 +7,12 @@ use App\Models\Patient;
 
 class PatientController extends Controller
 {
-    public function index() {
-        $patients = Patient::orderBy("name", "desc")->get();
-
+    public function index(Request $request) {
+        if ($request->input("search")) {
+            $patients = Patient::where("name", "ILIKE", "%" . $request->input("search") . "%")->orderBy("name", "desc")->get();
+        } else {
+            $patients = Patient::orderBy("name", "desc")->get();
+        }
         return view('patient', ['patients' => $patients]);
     }
 

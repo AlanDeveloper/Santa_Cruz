@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="mt-5 mb-5">Lista de medicamentos</h1>
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar medicamento</button>
-
+    @include('barSearch')
     <!-- Modal -->
     <div class="modal fade" id="modal-cadastrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

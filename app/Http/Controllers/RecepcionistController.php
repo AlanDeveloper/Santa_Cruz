@@ -8,9 +8,12 @@ use App\Models\Recepcionist;
 
 class RecepcionistController extends Controller
 {
-    public function index() {
-        $recepcionists = Recepcionist::orderBy("name", "desc")->get();
-
+    public function index(Request $request) {
+        if ($request->input("search")) {
+            $recepcionists = Recepcionist::where("name", "ILIKE", "%" . $request->input("search") . "%")->orderBy("name", "desc")->get();
+        } else {
+            $recepcionists = Recepcionist::orderBy("name", "desc")->get();
+        }
         return view('recepcionist', ['recepcionists' => $recepcionists]);
     }
 

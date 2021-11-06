@@ -8,8 +8,9 @@
         $(document).ready(function() {
             $('.cpf-mask').mask('000.000.000-00');
         });
-        </script>
-        <input type="text" class="cpf-mask">
+    </script>
+    <input type="text" class="cpf-mask">
+    @include('barSearch')
     <!-- Modal -->
     <div class="modal fade" id="modal-cadastrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
