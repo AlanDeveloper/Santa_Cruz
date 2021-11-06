@@ -11,7 +11,7 @@ class AppointmentController extends Controller
     public function index() {
        /*  $appointments = Appointment::orderBy("id", "desc")->get(); */
 
-        return view('Appointment', ['appointments' => $appointments]);
+        return view('appointment'/* , ['appointments' => $appointments] */);
     }
 
     public function store(Request $request) {
