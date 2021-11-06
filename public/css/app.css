@@ -8,3 +8,21 @@
 .modal-dialog {
     min-width: 60vw;
 }
+
+#logo {
+    margin-right: 10px;
+}
+
+.active {
+    position: relative;
+}
+
+.active::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 110%;
+    background: #0066cc;
+    bottom: -1em;
+    left: -5%;
+}
