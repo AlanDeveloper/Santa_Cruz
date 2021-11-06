@@ -17,13 +17,8 @@ class PatientController extends Controller
     }
 
     public function store(Request $request) {
-        if (strlen($request->input('cpf')) === 14 && strlen($request->input('telephone')) === 14) {
-            Patient::create($request->all());
-
-            return redirect('/patient');
-        } else {
-            return redirect('/patient')->withErrors(["telephone" => "Campo inválido", "cpf" => "Campo inválido"]);
-        }
+        Patient::create($request->all());
+        return redirect('/patient');
     }
 
     public function delete($id) {

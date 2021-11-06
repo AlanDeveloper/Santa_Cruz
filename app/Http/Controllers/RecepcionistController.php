@@ -18,12 +18,8 @@ class RecepcionistController extends Controller
     }
 
     public function store(Request $request) {
-        if (strlen($request->input('cpfNurse')) === 14 && intval($request->input('amount')) >= 0) {
-            Recepcionist::create($request->all());
-            return redirect('/recepcionist');
-        } else {
-            return redirect('/recepcionist')->withErrors(["amount" => "Campo inválido", "cpfNurse" => "Campo inválido"]);
-        }
+        Recepcionist::create($request->all());
+        return redirect('/recepcionist');
     }
 
     public function delete($id) {

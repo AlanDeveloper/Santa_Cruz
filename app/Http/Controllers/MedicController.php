@@ -17,13 +17,8 @@ class MedicController extends Controller
     }
 
     public function store(Request $request) {
-        if (strlen($request->input('cpf')) === 14 && strlen($request->input('telephone')) === 14) {
-            Medic::create($request->all());
-
-            return redirect('/medic');
-        } else {
-            return redirect('/medic')->withErrors(["telephone" => "Campo inválido", "cpf" => "Campo inválido"]);
-        }
+        Medic::create($request->all());
+        return redirect('/medic');
     }
 
     public function delete($id) {

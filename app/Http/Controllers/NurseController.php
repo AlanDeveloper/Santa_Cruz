@@ -17,13 +17,8 @@ class NurseController extends Controller
     }
 
     public function store(Request $request) {
-        if (strlen($request->input('cpf')) === 14 && strlen($request->input('telephone')) === 14) {
-            Nurse::create($request->all());
-
-            return redirect('/nurse');
-        } else {
-            return redirect('/nurse')->withErrors(["amount" => "Campo inválido", "cpf" => "Campo inválido"]);
-        }
+        Nurse::create($request->all());
+        return redirect('/nurse');
     }
 
     public function delete($id) {

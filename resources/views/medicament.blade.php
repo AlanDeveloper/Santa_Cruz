@@ -96,7 +96,7 @@
         </tbody>
     </table>
 
-    <script>
+    <!-- <script>
         (function () {
         'use strict'
 
@@ -116,5 +116,5 @@
             }, false)
             })
         })()
-    </script>
+    </script> -->
 @endsection
