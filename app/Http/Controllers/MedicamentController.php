@@ -4,18 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Medicament;
-
+use App\Models\Nurse;
 
 class MedicamentController extends Controller
 {
     public function index(Request $request) {
+        $nurses = Nurse::select('cpf', 'name as nameNurse');
+
         if ($request->input("search")) {
-            $medicaments = Medicament::where("name", "ILIKE", "%" . $request->input("search") . "%")->orderBy("name", "desc")->get();
+            $medicaments = Medicament::where("name", "ILIKE", "%" . $request->input("search") . "%")->orderBy("name", "desc");
         } else {
-            $medicaments = Medicament::orderBy("name", "desc")->get();
+            $medicaments = Medicament::orderBy("name", "desc");
         }
-        /* ->join('nurse', 'medicament.cpfNurse', '=', 'nurse.cpf')
-        ->get(); */
+
+        $medicaments = Medicament::joinSub($nurses, 'nurses', function ($join) {
+            $join->on('medicament.cpfNurse', '=', 'nurses.cpf');
+        })->get();
+
+
         return view('medicament', ['medicaments' => $medicaments]);
     }
 

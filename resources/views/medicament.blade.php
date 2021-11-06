@@ -77,7 +77,7 @@
                     <th scope="row">{{ $i + 1 }}</th>
                     <td>{{ $medicaments[$i]->name }}</td>
                     <td>{{ $medicaments[$i]->amount }}</td>
-                    <td><!-- {{ $medicaments[$i]->nameNurse }} --></td>
+                    <td>{{ $medicaments[$i]->nameNurse }}</td>
                     <td> 
                         <form method="post" class="delete_form" action="/medicament/{{ $medicaments[$i]->id }}">
                             {{ method_field('DELETE') }}
