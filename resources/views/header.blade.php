@@ -10,7 +10,7 @@
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto menu">
             <a @class(['me-3', 'py-2', 'text-decoration-none', 'active' => $route == 'appointment']) href="{{ url('appointment') }}">Consultas</a>
             <a @class(['me-3', 'py-2', 'text-decoration-none', 'active' => $route == 'patient']) href="{{ url('patient') }}">Pacientes</a>
-            <a @class(['me-3', 'py-2', 'text-decoration-none', 'active' => $route == 'withdrawal']) href="{{ url('withdrawal') }}">Retiradas</a>
+            <a @class(['me-3', 'py-2', 'text-decoration-none', 'active' => $route == 'withdraw']) href="{{ url('withdraw') }}">Retiradas</a>
         </nav>
 
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto menu">
