@@ -9,7 +9,7 @@ use App\Models\Withdraw;
 class WithdrawController extends Controller
 {
     public function index() {
-        $withdraws = Withdraw::orderBy("id", "desc")->get();
+        /* $withdraws = Withdraw::orderBy("id", "desc")->get(); */
 
         return view('withdraw', ['withdraws' => $withdraws]);
     }
@@ -24,7 +24,7 @@ class WithdrawController extends Controller
     }
 
     public function delete($id) {
-        Withdraw::where('id', $id)->delete();
+       /*  Withdraw::where('id', $id)->delete(); */
 
         return redirect('/withdraw');
     }

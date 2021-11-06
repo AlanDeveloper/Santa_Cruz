@@ -9,7 +9,7 @@ use App\Models\Appointment;
 class AppointmentController extends Controller
 {
     public function index() {
-        $appointments = Appointment::orderBy("id", "desc")->get();
+       /*  $appointments = Appointment::orderBy("id", "desc")->get(); */
 
         return view('Appointment', ['appointments' => $appointments]);
     }
@@ -24,7 +24,7 @@ class AppointmentController extends Controller
     }
 
     public function delete($id) {
-        Appointment::where('id', $id)->delete();
+       /*  Appointment::where('id', $id)->delete(); */
 
         return redirect('/appointment');
     }
