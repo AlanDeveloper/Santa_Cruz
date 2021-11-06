@@ -9,6 +9,7 @@ use App\Models\Withdraw;
 class WithdrawController extends Controller
 {
     public function index() {
+        $withdraws = [];
         /* $withdraws = Withdraw::orderBy("id", "desc")->get(); */
 
         return view('withdraw', ['withdraws' => $withdraws]);

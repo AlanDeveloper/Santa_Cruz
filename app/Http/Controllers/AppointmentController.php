@@ -9,9 +9,9 @@ use App\Models\Appointment;
 class AppointmentController extends Controller
 {
     public function index() {
+        $appointments = [];
        /*  $appointments = Appointment::orderBy("id", "desc")->get(); */
-
-        return view('appointment'/* , ['appointments' => $appointments] */);
+        return view('appointment', ['appointments' => $appointments]);
     }
 
     public function store(Request $request) {
