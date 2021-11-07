@@ -33,8 +33,13 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="validationCustom03" class="form-label">CPF do enfermeiro</label>
-                            <input type="text" name="cpfNurse" class="form-control" id="validationCustom03" placeholder="000.000.000-00" required>
+                            <label for="validationCustom03" class="form-label">Enfermeiro Responsável</label>
+                            <!-- <input type="text" name="cpfNurse" class="form-control" id="validationCustom03" placeholder="000.000.000-00" required> -->
+                            <select name="cpfNurse" id="validationCustom03" class="form-select form-control" required>
+                                @foreach ($nurses as $nurse)
+                                    <option value="{{ $nurse->cpf }}"> {{ $nurse->name }}</option>
+                                @endforeach
+                            </select>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
