@@ -21,6 +21,8 @@ class TableAppointment extends Migration
             $table->string('cpfRec', 14);
             $table->string('cpfPac', 14);
 
+            $table->foreign('cpfPac')->references('cpf')->on('patient');
+            $table->foreign('cpfRec')->references('cpf')->on('recepcionist');
             $table->timestamps();
         });
     }

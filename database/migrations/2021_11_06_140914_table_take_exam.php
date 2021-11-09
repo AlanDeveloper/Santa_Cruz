@@ -14,13 +14,17 @@ class TableTakeExam extends Migration
     public function up()
     {
         Schema::create('takeExam', function (Blueprint $table) {
-            $table->primary(['idExam','cpfNurse','idConsultation']);
+            $table->primary(['idExam','cpfNurse','idAppointment']);
 
             $table->datetime('date');
-            $table->integer('idConsultation');
+            $table->integer('idAppointment');
             $table->integer('idExam');
             $table->text('result');
             $table->string('cpfNurse', 14);
+
+            $table->foreign('cpfNurse')->references('cpf')->on('nurse');
+            $table->foreign('idExam')->references('id')->on('exam');
+            $table->foreign('idAppointment')->references('id')->on('appointment');
 
             $table->timestamps();
         });
