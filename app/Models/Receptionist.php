@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Recepcionist extends Model
+class Receptionist extends Model
 {
     use HasFactory;
 
     public $timestamps = true;
     public $incrementing = false;
 
-    protected $table = 'recepcionist';
+    protected $table = 'receptionist';
     protected $primaryKey = 'cpf';
     protected $keyType = 'string';
 

@@ -17,7 +17,7 @@ class TablePerforms extends Migration
             $table->primary(['cpfMed','idAppointment']);
 
             $table->string('cpfMed',14);
-            $table->integer('idAppointment');
+            $table->integer('idConsultation');
             $table->text('diagnosis');
             $table->datetime('date');
 
