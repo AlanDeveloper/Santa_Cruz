@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TableRecepcionist extends Migration
+class TableReceptionist extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class TableRecepcionist extends Migration
      */
     public function up()
     {
-        Schema::create('recepcionist', function (Blueprint $table) {
+        Schema::create('receptionist', function (Blueprint $table) {
             $table->primary('cpf');
 
             $table->string('cpf', 14);
@@ -34,6 +34,6 @@ class TableRecepcionist extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recepcionist');
+        Schema::dropIfExists('receptionist');
     }
 }

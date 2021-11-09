@@ -77,7 +77,7 @@
                         </div>
                     @endif
 
-                    @if ($type == 'recepcionist')
+                    @if ($type == 'receptionist')
                         <div class="col-md-6">
                             <label for="validationCustom06" class="form-label">Conhecimentos</label>
                             <input type="text" name="knowledge" class="form-control" id="validationCustom06" maxlength="500" placeholder="Preencha com seus conhecimentos" required>

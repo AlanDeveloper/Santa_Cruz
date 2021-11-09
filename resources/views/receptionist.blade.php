@@ -1,10 +1,10 @@
 @extends('layout')
 
 @section('content')
-    <h1 class="mt-5 mb-5">Lista de recepcionistas</h1>
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar recepcionista</button>
+    <h1 class="mt-5 mb-5">Lista de receptionistas</h1>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar receptionista</button>
     @include('barSearch')
-    @include('modal', ['type' => 'recepcionist'])
+    @include('modal', ['type' => 'receptionist'])
     
     @if ($errors->any())
         <div class="alert alert-danger mt-2 mb-2">Houve um erro ao cadastrar o paciente!</div>
@@ -22,15 +22,15 @@
             </tr>
         </thead>
         <tbody>
-            @for ($i = 0; $i < count($recepcionists); $i++)
+            @for ($i = 0; $i < count($receptionists); $i++)
                 <tr class="align-middle">
                     <th scope="row">{{ $i + 1 }}</th>
-                    <td>{{ $recepcionists[$i]->name }}</td>
-                    <td>{{ $recepcionists[$i]->email }}</td>
-                    <td>{{ $recepcionists[$i]->telephone }}</td>
-                    <td>{{ $recepcionists[$i]->cpf }}</td>
+                    <td>{{ $receptionists[$i]->name }}</td>
+                    <td>{{ $receptionists[$i]->email }}</td>
+                    <td>{{ $receptionists[$i]->telephone }}</td>
+                    <td>{{ $receptionists[$i]->cpf }}</td>
                     <td> 
-                        <form method="post" class="delete_form" action="/recepcionist/{{ $recepcionists[$i]->cpf }}">
+                        <form method="post" class="delete_form" action="/receptionist/{{ $receptionists[$i]->cpf }}">
                             {{ method_field('DELETE') }}
                             {{  csrf_field() }}
                             <button type="submit" class="btn btn-danger">Deletar</button>
@@ -39,9 +39,9 @@
                 </tr>
             @endfor
 
-            @if (count($recepcionists) == 0)
+            @if (count($receptionists) == 0)
                 <tr class="align-middle">
-                    <th class="text-center" colspan="5" scope="row">Nenhum recepcionista cadastrado.</th>
+                    <th class="text-center" colspan="5" scope="row">Nenhum receptionista cadastrado.</th>
                 </tr>
             @endif
         </tbody>

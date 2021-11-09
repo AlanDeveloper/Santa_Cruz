@@ -6,7 +6,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MedicamentController;
 use App\Http\Controllers\NurseController;
 use App\Http\Controllers\MedicController;
-use App\Http\Controllers\RecepcionistController;
+use App\Http\Controllers\ReceptionistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,11 +53,11 @@ Route::group(['prefix' => 'nurse'], function () {
 });
 
 
-Route::group(['prefix' => 'recepcionist'], function () {
-    Route::get('/', [RecepcionistController::class, 'index']);
-    Route::post('/', [RecepcionistController::class, 'store']);
-    // Route::put('/{id}', [RecepcionistController::class, 'update']);
-    Route::delete('/{id}', [RecepcionistController::class, 'delete']);
+Route::group(['prefix' => 'receptionist'], function () {
+    Route::get('/', [ReceptionistController::class, 'index']);
+    Route::post('/', [ReceptionistController::class, 'store']);
+    // Route::put('/{id}', [ReceptionistController::class, 'update']);
+    Route::delete('/{id}', [ReceptionistController::class, 'delete']);
 });
 
 Route::group(['prefix' => 'appointment'], function () {
