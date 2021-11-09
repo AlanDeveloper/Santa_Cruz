@@ -6,6 +6,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MedicamentController;
 use App\Http\Controllers\NurseController;
 use App\Http\Controllers\MedicController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ReceptionistController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,4 +73,11 @@ Route::group(['prefix' => 'withdraw'], function () {
     Route::post('/', [WithdrawController::class, 'store']);
     // Route::put('/{id}', [WithdrawController::class, 'update']);
     Route::delete('/{id}', [WithdrawController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'exam'], function () {
+    Route::get('/', [ExamController::class, 'index']);
+    Route::post('/', [ExamController::class, 'store']);
+    // Route::put('/{id}', [ExamController::class, 'update']);
+    Route::delete('/{id}', [ExamController::class, 'delete']);
 });
