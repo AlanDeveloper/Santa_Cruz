@@ -15,6 +15,7 @@
 
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto menu">
             <a @class(['me-3', 'py-2', 'text-decoration-none', 'active' => $route == 'nurse']) href="{{ url('nurse') }}">Enfermeiros</a>
+            <a @class(['me-3', 'py-2', 'text-decoration-none', 'active' => $route == 'exam']) href="{{ url('exam') }}">Exames</a>
             <a @class(['me-3', 'py-2', 'text-decoration-none', 'active' => $route == 'medic']) href="{{ url('medic') }}">Médicos</a>
             <a @class(['me-3', 'py-2', 'text-decoration-none', 'active' => $route == 'medicament']) href="{{ url('medicament') }}">Medicamentos</a>
             <a @class(['me-3', 'py-2', 'text-decoration-none', 'active' => $route == 'receptionist']) href="{{ url('receptionist') }}">Receptionistas</a>
