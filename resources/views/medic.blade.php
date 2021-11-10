@@ -17,6 +17,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
                 <th scope="col">Telefone</th>
+                <th scope="col">CPF</th>
                 <th scope="col">Especialidade</th>
                 
             </tr>
@@ -28,6 +29,7 @@
                     <td>{{ $medics[$i]->name }}</td>
                     <td>{{ $medics[$i]->email }}</td>
                     <td>{{ $medics[$i]->telephone }}</td>
+                    <td>{{ $medics[$i]->cpf }}</td>
                     <td>{{ $medics[$i]->speciality }}</td>
                     <td> 
                         <form method="post" class="delete_form" action="/medic/{{ $medics[$i]->cpf }}">
@@ -41,7 +43,7 @@
 
             @if (count($medics) == 0)
                 <tr class="align-middle">
-                    <th class="text-center" colspan="5" scope="row">Nenhum médico cadastrado.</th>
+                    <th class="text-center" colspan="6" scope="row">Nenhum médico cadastrado.</th>
                 </tr>
             @endif
         </tbody>

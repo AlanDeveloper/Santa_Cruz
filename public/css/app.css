@@ -2,7 +2,7 @@
     color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity));
 }
 
-.menu a:hover {
+.menu > a:hover {
     color: #0066cc !important;
 }
 
@@ -28,9 +28,9 @@
     border: none !important;
 }
 
-.dropdown-item:hover  {
+/* .dropdown-item:hover  {
     color: #0066cc !important;
-}
+} */
 
 .active::after {
     content: '';
