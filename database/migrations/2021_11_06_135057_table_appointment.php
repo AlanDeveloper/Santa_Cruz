@@ -14,15 +14,14 @@ class TableAppointment extends Migration
     public function up()
     {
         Schema::create('appointment', function (Blueprint $table) {
-            $table->primary('id');
 
-            $table->integer('id');
+            $table->increments('id');
             $table->datetime('date');
             $table->string('cpfRec', 14);
             $table->string('cpfPac', 14);
 
             $table->foreign('cpfPac')->references('cpf')->on('patient');
-            $table->foreign('cpfRec')->references('cpf')->on('recepcionist');
+            $table->foreign('cpfRec')->references('cpf')->on('receptionist');
             $table->timestamps();
         });
     }

@@ -1,13 +1,13 @@
 @extends('layout')
 
 @section('content')
-    <h1 class="mt-5 mb-5">Lista de receptionistas</h1>
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar receptionista</button>
+    <h1 class="mt-5 mb-5">Lista de recepcionistas</h1>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar recepcionista</button>
     @include('barSearch')
     @include('modal', ['type' => 'receptionist'])
     
     @if ($errors->any())
-        <div class="alert alert-danger mt-2 mb-2">Houve um erro ao cadastrar o paciente!</div>
+        <div class="alert alert-danger mt-2 mb-2">Houve um erro ao cadastrar o recepcionista!</div>
     @endif
     
     <table class="table table-striped">

@@ -18,7 +18,7 @@ class Performs extends Model
 
     protected $fillable = [
         'cpfMed',
-        'idConsultation',
+        'idAppointment',
         'diagnosis',
         'date'
     ];

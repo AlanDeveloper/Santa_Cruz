@@ -17,8 +17,8 @@ class TablePerforms extends Migration
             $table->primary(['cpfMed','idAppointment']);
 
             $table->string('cpfMed',14);
-            $table->integer('idConsultation');
-            $table->text('diagnosis');
+            $table->integer('idAppointment');
+            $table->text('diagnosis')->nullable();
             $table->datetime('date');
 
             $table->foreign('cpfMed')->references('cpf')->on('medic');
