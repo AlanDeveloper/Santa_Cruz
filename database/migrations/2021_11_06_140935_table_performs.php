@@ -14,12 +14,15 @@ class TablePerforms extends Migration
     public function up()
     {
         Schema::create('performs', function (Blueprint $table) {
-            $table->primary(['cpfMed','idConsultation']);
+            $table->primary(['cpfMed','idAppointment']);
 
             $table->string('cpfMed',14);
-            $table->integer('idConsultation');
-            $table->text('diagnosis');
+            $table->integer('idAppointment');
+            $table->text('diagnosis')->nullable();
             $table->datetime('date');
+
+            $table->foreign('cpfMed')->references('cpf')->on('medic');
+            $table->foreign('idAppointment')->references('id')->on('appointment');
 
             $table->timestamps();
         });

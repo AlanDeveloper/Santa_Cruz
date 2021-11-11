@@ -1,8 +1,14 @@
 .menu a {
     color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity));
 }
-.menu a:hover {
-    color: inital !important;
+
+.menu > a:hover {
+    color: #0066cc !important;
+}
+
+.menua a:active {
+    color: #0066cc !important;
+    background-color: white !important;
 }
 
 .modal-dialog {
@@ -16,6 +22,15 @@
 .active {
     position: relative;
 }
+
+.dropdown-toggle::after {
+    margin: 0 !important;
+    border: none !important;
+}
+
+/* .dropdown-item:hover  {
+    color: #0066cc !important;
+} */
 
 .active::after {
     content: '';

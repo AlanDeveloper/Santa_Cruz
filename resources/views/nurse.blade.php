@@ -29,6 +29,9 @@
                     <td>{{ $nurses[$i]->email }}</td>
                     <td>{{ $nurses[$i]->telephone }}</td>
                     <td>{{ $nurses[$i]->cpf }}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning text-light modalEdit" data-bs-toggle="modal" data-bs-target="#modal-editar" data-bs-content="{{ json_encode($nurses[$i]) }}">Editar</button>
+                    </td>
                     <td> 
                         <form method="post" class="delete_form" action="/nurse/{{ $nurses[$i]->cpf }}">
                             {{ method_field('DELETE') }}
@@ -49,25 +52,4 @@
 
     @include('modalEdit', ['type' => 'patient'])
 
-    <!-- <script>
-        (function () {
-        'use strict'
-
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
-
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-                }
-
-                form.classList.add('was-validated')
-            }, false)
-            })
-        })()
-    </script> -->
 @endsection

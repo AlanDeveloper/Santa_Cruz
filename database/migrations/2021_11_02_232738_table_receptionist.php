@@ -23,6 +23,7 @@ class TableReceptionist extends Migration
             $table->string('telephone', 14);
             $table->boolean('experience');
             $table->string('knowledge', 500);
+            
             $table->timestamps();
         });
     }

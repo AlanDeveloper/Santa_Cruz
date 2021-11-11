@@ -1,13 +1,13 @@
 @extends('layout')
 
 @section('content')
-    <h1 class="mt-5 mb-5">Lista de receptionistas</h1>
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar receptionista</button>
+    <h1 class="mt-5 mb-5">Lista de recepcionistas</h1>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar recepcionista</button>
     @include('barSearch')
     @include('modalAdd', ['type' => 'receptionist'])
     
     @if ($errors->any())
-        <div class="alert alert-danger mt-2 mb-2">Houve um erro ao cadastrar o paciente!</div>
+        <div class="alert alert-danger mt-2 mb-2">Houve um erro ao cadastrar o recepcionista!</div>
     @endif
     
     <table class="table table-striped">
@@ -29,6 +29,9 @@
                     <td>{{ $receptionists[$i]->email }}</td>
                     <td>{{ $receptionists[$i]->telephone }}</td>
                     <td>{{ $receptionists[$i]->cpf }}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning text-light modalEdit" data-bs-toggle="modal" data-bs-target="#modal-editar" data-bs-content="{{ json_encode($receptionists[$i]) }}">Editar</button>
+                    </td>
                     <td> 
                         <form method="post" class="delete_form" action="/receptionist/{{ $receptionists[$i]->cpf }}">
                             {{ method_field('DELETE') }}
@@ -41,7 +44,7 @@
 
             @if (count($receptionists) == 0)
                 <tr class="align-middle">
-                    <th class="text-center" colspan="5" scope="row">Nenhum receptionista cadastrado.</th>
+                    <th class="text-center" colspan="5" scope="row">Nenhum recepcionista cadastrado.</th>
                 </tr>
             @endif
         </tbody>
@@ -49,25 +52,4 @@
 
     @include('modalEdit', ['type' => 'patient'])
 
-    <!-- <script>
-        (function () {
-        'use strict'
-
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
-
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-                }
-
-                form.classList.add('was-validated')
-            }, false)
-            })
-        })()
-    </script> -->
 @endsection
