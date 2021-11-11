@@ -4,7 +4,7 @@
     <h1 class="mt-5 mb-5">Lista de enfermeiros</h1>
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar enfermeiro</button>
     @include('barSearch')
-    @include('modal', ['type' => 'nurse'])
+    @include('modalAdd', ['type' => 'nurse'])
     
     @if ($errors->any())
         <div class="alert alert-danger mt-2 mb-2">Houve um erro ao cadastrar o paciente!</div>
@@ -46,6 +46,8 @@
             @endif
         </tbody>
     </table>
+
+    @include('modalEdit', ['type' => 'patient'])
 
     <!-- <script>
         (function () {

@@ -27,14 +27,14 @@ Route::get('/', function () {
 Route::group(['prefix' => 'patient'], function () {
     Route::get('/', [PatientController::class, 'index']);
     Route::post('/', [PatientController::class, 'store']);
-    // Route::put('/{id}', [PatientController::class, 'update']);
+    Route::put('/{id}', [PatientController::class, 'update']);
     Route::delete('/{id}', [PatientController::class, 'delete']);
 });
 
 Route::group(['prefix' => 'medic'], function () {
     Route::get('/', [MedicController::class, 'index']);
     Route::post('/', [MedicController::class, 'store']);
-    // Route::put('/{id}', [MedicController::class, 'update']);
+    Route::put('/{id}', [MedicController::class, 'update']);
     Route::delete('/{id}', [MedicController::class, 'delete']);
 });
 
@@ -48,7 +48,7 @@ Route::group(['prefix' => 'medicament'], function () {
 Route::group(['prefix' => 'nurse'], function () {
     Route::get('/', [NurseController::class, 'index']);
     Route::post('/', [NurseController::class, 'store']);
-    // Route::put('/{id}', [NurseController::class, 'update']);
+    Route::put('/{id}', [NurseController::class, 'update']);
     Route::delete('/{id}', [NurseController::class, 'delete']);
 });
 
@@ -56,7 +56,7 @@ Route::group(['prefix' => 'nurse'], function () {
 Route::group(['prefix' => 'receptionist'], function () {
     Route::get('/', [ReceptionistController::class, 'index']);
     Route::post('/', [ReceptionistController::class, 'store']);
-    // Route::put('/{id}', [ReceptionistController::class, 'update']);
+    Route::put('/{id}', [ReceptionistController::class, 'update']);
     Route::delete('/{id}', [ReceptionistController::class, 'delete']);
 });
 

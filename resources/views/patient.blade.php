@@ -5,7 +5,7 @@
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar paciente</button>
 
     @include('barSearch')
-    @include('modal', ['type' => 'patient'])
+    @include('modalAdd', ['type' => 'patient'])
     
     @if ($errors->any())
         <div class="alert alert-danger mt-2 mb-2">Houve um erro ao cadastrar o paciente!</div>
@@ -30,6 +30,9 @@
                     <td>{{ $patients[$i]->email }}</td>
                     <td>{{ $patients[$i]->telephone }}</td>
                     <td>{{ $patients[$i]->cpf }}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning text-light modalEdit" data-bs-toggle="modal" data-bs-target="#modal-editar" data-bs-content="{{ json_encode($patients[$i]) }}">Editar</button>
+                    </td>
                     <td> 
                         <form method="post" class="delete_form" action="/patient/{{ $patients[$i]->cpf }}">
                             {{ method_field('DELETE') }}
@@ -47,6 +50,8 @@
             @endif
         </tbody>
     </table>
+
+    @include('modalEdit', ['type' => 'patient'])
 
     <!-- <script>
         (function () {

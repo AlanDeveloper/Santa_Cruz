@@ -21,9 +21,13 @@ class MedicController extends Controller
         return redirect('/medic');
     }
 
+    public function update(Request $request, $id) {
+        Medic::where('cpf', $id)->update($request->except(['_method', '_token']));
+        return redirect('/medic');
+    }
+
     public function delete($id) {
         Medic::where('cpf', $id)->delete();
-
         return redirect('/medic');
     }
 }

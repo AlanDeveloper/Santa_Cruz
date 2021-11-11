@@ -21,6 +21,11 @@ class PatientController extends Controller
         return redirect('/patient');
     }
 
+    public function update(Request $request, $id) {
+        Patient::where('cpf', $id)->update($request->except(['_method', '_token']));
+        return redirect('/patient');
+    }
+
     public function delete($id) {
         Patient::where('cpf', $id)->delete();
 

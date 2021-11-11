@@ -21,6 +21,11 @@ class NurseController extends Controller
         return redirect('/nurse');
     }
 
+    public function update(Request $request, $id) {
+        Nurse::where('cpf', $id)->update($request->except(['_method', '_token']));
+        return redirect('/nurse');
+    }
+
     public function delete($id) {
         Nurse::where('cpf', $id)->delete();
 

@@ -22,6 +22,11 @@ class ReceptionistController extends Controller
         return redirect('/receptionist');
     }
 
+    public function update(Request $request, $id) {
+        Receptionist::where('cpf', $id)->update($request->except(['_method', '_token']));
+        return redirect('/receptionist');
+    }
+
     public function delete($id) {
         Receptionist::where('id', $id)->delete();
 
