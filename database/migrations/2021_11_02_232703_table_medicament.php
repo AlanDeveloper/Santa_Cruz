@@ -19,9 +19,9 @@ class TableMedicament extends Migration
             $table->string('name', 100);
             $table->integer('amount');
             $table->string('description', 500);
-            $table->string('cpfNurse', 14);
+            $table->string('cpfNurse', 14)->nullable();
 
-            $table->foreign('cpfNurse')->references('cpf')->on('nurse');
+            $table->foreign('cpfNurse')->references('cpf')->on('nurse')->onDelete('set null');
 
             $table->timestamps();
         });

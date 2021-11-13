@@ -22,8 +22,8 @@ class TableWithdraw extends Migration
             $table->string('cpfNurse', 14);
             $table->string('cpfPac', 14);
 
-            $table->foreign('cpfNurse')->references('cpf')->on('nurse');
-            $table->foreign('cpfPac')->references('cpf')->on('patient');
+            $table->foreign('cpfNurse')->references('cpf')->on('nurse')->onDelete('cascade');
+            $table->foreign('cpfPac')->references('cpf')->on('patient')->onDelete('cascade');
 
             $table->timestamps();
         });

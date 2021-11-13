@@ -1,7 +1,19 @@
 @extends('layout')
+<?php 
+        function converteData($dataHora) {
+            $p = explode(' ', $dataHora);
+            $data = $p[0];
+            $hora = $p[1];
+            $hora = substr($hora,0,5);
+
+            $p = explode('-', $data);
+            $data = $p[2] . '/' . $p[1] . '/' . $p[0];
+            return $data . ' ' . $hora;
+        }
+?>
 
 @section('content')
-    <h1 class="mt-5 mb-5">Lista de retiradas</h1>
+    <h1 class="mt-5 mb-5">Registro de retiradas</h1>
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Retirar Medicamento</button>
     <!-- Modal -->
     <div class="modal fade" id="modal-cadastrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -12,49 +24,49 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="/patient" class="row g-3 needs-validation" novalidate>
+                    <form method="post" action="/withdraw" class="row g-3 needs-validation" novalidate>
                         {{  csrf_field() }}
                         <div class="col-md-6">
-                            <label for="validationCustom01" class="form-label">Nome completo</label>
-                            <input type="text" name="name" class="form-control" id="validationCustom01" placeholder="Preencha com seu nome" required>
+                            <label for="validationCustom01" class="form-label">CPF do Paciente</label>
+                            <input type="text" name="cpfPac" class="form-control" id="validationCustom01" placeholder="XXX.XXX.XXX-XX" required>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="validationCustomUsername" class="form-label">Email</label>
-                            <div class="input-group has-validation">
-                                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                <input type="email" name="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" placeholder="example@example.com" required>
-                                <div class="invalid-feedback">
-                                    É necessário preencher o campo corretamente!
-                                </div>
-                            </div>
+                            <label for="validationCustom02" class="form-label">Enfermeiro</label>
+                            <select name="cpfNurse" id="validationCustom02" class="form-select form-control" required>
+                                @foreach ($nurses as $nurse)
+                                    <option value="{{ $nurse->cpf }}"> {{ $nurse->nameNurse }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="validationCustom03" class="form-label">CPF</label>
-                            <input type="text" name="cpf" class="form-control cpf-mask" id="validationCustom03" placeholder="XXX.XXX.XXX-XX" data-mask="000.000.000-00" required>
+                            <label for="validationCustom03" class="form-label">Medicamento</label>
+                            <select name="idMedicament" id="validationCustom03" class="form-select form-control" required>
+                                @foreach ($medicaments as $med)
+                                    <option value="{{ $med->idMed }}"> {{ $med->amountMed }} - {{ $med->nameMed }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="validationCustom04" class="form-label">Quantidade</label>
+                            <input type="text" name="amount" class="form-control" id="validationCustom04" placeholder="" required>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="validationCustom05" class="form-label">Endereço</label>
-                            <input type="text" name="address" class="form-control" id="validationCustom05" placeholder="Preencha com seu endereço" required>
+                            <label for="validationCustom03" class="form-label">Data</label>
+                            <input type="date" name="data" class="form-control" id="validationCustom03" placeholder="__/__/____" maxlength="10" required>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
                         </div>
+
                         <div class="col-md-6">
-                            <label for="validationCustom06" class="form-label">Telefone</label>
-                            <input type="text" name="telephone" class="form-control" id="validationCustom06" placeholder="(XX)XXXXX-XXXX" required>
-                            <div class="invalid-feedback">
-                                É necessário preencher o campo corretamente!
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="validationCustom07" class="form-label">Data de nascimento</label>
-                            <input type="date" name="birth_date" class="form-control" id="validationCustom07" placeholder="Preencha com sua data de nascimento" required>
+                            <label for="validationCustom03" class="form-label">Hora</label>
+                            <input type="text" name="hora" class="form-control time-mask" id="validationCustom03" maxlength="5" placeholder="__:__" required>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -70,29 +82,38 @@
     </div>
     
     @if ($errors->any())
-        <div class="alert alert-danger">Houve um erro ao retirar o medicamento!</div>
+        <div class="alert alert-danger">Houve um erro ao retirar o medicamento!
+        <!-- @if ($errors->amount)
+            Erro: quantidade inválida.
+        @endif -->
+        @if ($errors->negativo)
+            {{ $errors->first('negativo') }}
+        @endif
+        </div>
     @endif
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Email</th>
-                <th scope="col">Telefone</th>
-                <th scope="col">CPF</th>
+                <th scope="col">Data</th>
+                <th scope="col">Paciente</th>
+                <th scope="col">Medicamento</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Enfermeiro</th>
                 
             </tr>
         </thead>
-      <!--   <tbody>
+        <tbody>
             @for ($i = 0; $i < count($withdraws); $i++)
                 <tr class="align-middle">
                     <th scope="row">{{ $i + 1 }}</th>
-                    <td>{{ $withdraws[$i]->name }}</td>
-                    <td>{{ $withdraws[$i]->email }}</td>
-                    <td>{{ $withdraws[$i]->telephone }}</td>
-                    <td>{{ $withdraws[$i]->cpf }}</td>
+                    <td>{{ converteData($withdraws[$i]->date) }}</td>
+                    <td>{{ $withdraws[$i]->namePac }}</td>
+                    <td>{{ $withdraws[$i]->nameMed }}</td>
+                    <td>{{ $withdraws[$i]->amount }}</td>
+                    <td>{{ $withdraws[$i]->nameNurse }}</td>
                     <td> 
-                        <form method="post" class="delete_form" action="/patient/{{ $withdraws[$i]->cpf }}">
+                        <form method="post" class="delete_form" action="/withdraw/{{ $withdraws[$i]->id }}">
                             {{ method_field('DELETE') }}
                             {{  csrf_field() }}
                             <button type="submit" class="btn btn-danger">Deletar</button>
@@ -103,9 +124,35 @@
 
             @if (count($withdraws) == 0)
                 <tr class="align-middle">
-                    <th class="text-center" colspan="5" scope="row">Nenhum paciente cadastrado.</th>
+                    <th class="text-center" colspan="6" scope="row">Nenhum retirada cadastrada.</th>
                 </tr>
             @endif
-        </tbody> -->
+        </tbody>
     </table>
+
+<script>
+    function formatCPF(cpf){
+        if (cpf.length > 14) cpf = cpf.slice(0, 14);
+        cpf = cpf.replace(/[^\d]/g, "");
+        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+    }
+
+    let input = document.querySelector('.cpf-mask');
+    input.addEventListener('keyup', e => {
+        let res = formatCPF(e.target.value);
+        e.target.value = res;
+    });
+
+    function formatTime(t){
+        if (t.length > 5) t = t.slice(0, 5);
+        t = t.replace(/[^\d]/g, "");
+        return t.replace(/(\d{2})(\d{2})/, "$1:$2");
+    }
+
+    input = document.querySelector('.time-mask');
+    input.addEventListener('keyup', e => {
+        let res = formatTime(e.target.value);
+        e.target.value = res;
+    });
+</script>
 @endsection

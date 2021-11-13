@@ -17,11 +17,11 @@ class TableAppointment extends Migration
 
             $table->increments('id');
             $table->datetime('date');
-            $table->string('cpfRec', 14);
-            $table->string('cpfPac', 14);
+            $table->string('cpfRec', 14)->nullable();
+            $table->string('cpfPac', 14)->nullable();
 
-            $table->foreign('cpfPac')->references('cpf')->on('patient');
-            $table->foreign('cpfRec')->references('cpf')->on('receptionist');
+            $table->foreign('cpfPac')->references('cpf')->on('patient')->onDelete('set null');
+            $table->foreign('cpfRec')->references('cpf')->on('receptionist')->onDelete('set null');
             $table->timestamps();
         });
     }

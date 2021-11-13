@@ -21,8 +21,8 @@ class TablePerforms extends Migration
             $table->text('diagnosis')->nullable();
             $table->datetime('date');
 
-            $table->foreign('cpfMed')->references('cpf')->on('medic');
-            $table->foreign('idAppointment')->references('id')->on('appointment');
+            $table->foreign('cpfMed')->references('cpf')->on('medic')->onDelete('cascade');
+            $table->foreign('idAppointment')->references('id')->on('appointment')->onDelete('cascade');
 
             $table->timestamps();
         });

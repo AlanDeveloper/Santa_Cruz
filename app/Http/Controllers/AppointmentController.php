@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -45,11 +46,14 @@ class AppointmentController extends Controller
             'date' => Carbon::now()
         ];
 
-        $idAppointment = Appointment::create($appointment_request);
-        echo $idAppointment->id;
+        try {
+            $Appointment = Appointment::create($appointment_request);
+        } catch (QueryException $ex) {
+            return redirect('/appointment')->withErrors(["cpfPac" => "Paciente inválido."]);
+        }
 
         $performs_request = [
-            'idAppointment' => $idAppointment->id,
+            'idAppointment' => $Appointment->id,
             'cpfMed' => $request->input('cpfMed'),
             'date' => $request->input('data') . ' ' . $request->input('hora')
         ];

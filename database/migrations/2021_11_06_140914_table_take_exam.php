@@ -22,9 +22,9 @@ class TableTakeExam extends Migration
             $table->text('result');
             $table->string('cpfNurse', 14);
 
-            $table->foreign('cpfNurse')->references('cpf')->on('nurse');
-            $table->foreign('idExam')->references('id')->on('exam');
-            $table->foreign('idAppointment')->references('id')->on('appointment');
+            $table->foreign('cpfNurse')->references('cpf')->on('nurse')->onDelete('cascade');
+            $table->foreign('idExam')->references('id')->on('exam')->onDelete('cascade');
+            $table->foreign('idAppointment')->references('id')->on('appointment')->onDelete('cascade');
 
             $table->timestamps();
         });
