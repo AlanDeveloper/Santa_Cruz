@@ -42,7 +42,7 @@ Route::group(['prefix' => 'medic'], function () {
 Route::group(['prefix' => 'medicament'], function () {
     Route::get('/', [MedicamentController::class, 'index']);
     Route::post('/', [MedicamentController::class, 'store']);
-    // Route::put('/{id}', [MedicamentController::class, 'update']);
+    Route::put('/{id}', [MedicamentController::class, 'update']);
     Route::delete('/{id}', [MedicamentController::class, 'delete']);
 });
 

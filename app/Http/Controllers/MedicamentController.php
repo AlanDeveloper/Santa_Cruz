@@ -35,6 +35,11 @@ class MedicamentController extends Controller
         }
     }
 
+    public function update(Request $request, $id) {
+        Medicament::where('id', $id)->update($request->except(['_method', '_token']));
+        return redirect('/medicament');
+    }
+
     public function delete($id) {
         Medicament::where('id', $id)->delete();
 
