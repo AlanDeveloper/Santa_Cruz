@@ -17,8 +17,6 @@ class WithdrawController extends Controller
         $pacientes = Patient::select('cpf as cpfPac', 'name as namePac');
         $medicamentos = Medicament::select('id as idMed', 'name as nameMed', 'amount as amountMed');
 
-
-
         $withdraws = Withdraw::joinSub($medicamentos, 'medicamentos', function ($join) {
 
             $join->on('withdraw.idMedicament', '=', 'medicamentos.idMed');
@@ -36,6 +34,7 @@ class WithdrawController extends Controller
         $data['withdraws'] = $withdraws->orderBy("date", "desc")->get();
         $data['nurses'] = $nurses->get();
         $data['medicaments'] = $medicamentos->get();
+        $data['patients'] = $pacientes->get();
 
         return view('withdraw', $data);
     }
@@ -63,7 +62,12 @@ class WithdrawController extends Controller
     }
 
     public function delete($id) {
-        Withdraw::where('id', $id)->delete();
+        Withdraw::where([
+            ['cpfNurse', explode('x', $id)[0]],
+            ['cpfPac', explode('x', $id)[1]],
+            ['idMedicament', explode('x', $id)[2]],
+            ['date', explode('x', $id)[3]]
+        ])->delete();
         return redirect('/withdraw');
     }
 }

@@ -27,8 +27,13 @@
                     <form method="post" action="/withdraw" class="row g-3 needs-validation" novalidate>
                         {{  csrf_field() }}
                         <div class="col-md-6">
-                            <label for="validationCustom01" class="form-label">CPF do Paciente</label>
-                            <input type="text" name="cpfPac" class="form-control" id="validationCustom01" placeholder="XXX.XXX.XXX-XX" required>
+                            <label for="validationCustom01" class="form-label">Paciente</label>
+                            <select name="cpfPac" id="validationCustom03" class="form-select form-control" required>
+                                <option>Selecione o paciente</option>
+                                @foreach ($patients as $pat)
+                                    <option value="{{ $pat->cpfPac }}">{{ $pat->namePac }}</option>
+                                @endforeach
+                            </select>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -36,6 +41,7 @@
                         <div class="col-md-6">
                             <label for="validationCustom02" class="form-label">Enfermeiro</label>
                             <select name="cpfNurse" id="validationCustom02" class="form-select form-control" required>
+                                <option>Selecione um enfermeiro</option>
                                 @foreach ($nurses as $nurse)
                                     <option value="{{ $nurse->cpf }}"> {{ $nurse->nameNurse }}</option>
                                 @endforeach
@@ -44,14 +50,15 @@
                         <div class="col-md-6">
                             <label for="validationCustom03" class="form-label">Medicamento</label>
                             <select name="idMedicament" id="validationCustom03" class="form-select form-control" required>
+                                <option>Selecione o medicamento</option>
                                 @foreach ($medicaments as $med)
-                                    <option value="{{ $med->idMed }}"> {{ $med->amountMed }} - {{ $med->nameMed }}</option>
+                                    <option value="{{ $med->idMed }}">{{ $med->nameMed }}({{ $med->amountMed }})</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="validationCustom04" class="form-label">Quantidade</label>
-                            <input type="text" name="amount" class="form-control" id="validationCustom04" placeholder="" required>
+                            <input type="text" name="amount" class="form-control" id="validationCustom04" placeholder="Preencha a quantidade para retirada" required>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -113,7 +120,7 @@
                     <td>{{ $withdraws[$i]->amount }}</td>
                     <td>{{ $withdraws[$i]->nameNurse }}</td>
                     <td> 
-                        <form method="post" class="delete_form" action="/withdraw/{{ $withdraws[$i]->id }}">
+                        <form method="post" class="delete_form" action="/withdraw/{{ $withdraws[$i]->cpfNurse }}x{{ $withdraws[$i]->cpfPac }}x{{ $withdraws[$i]->idMed }}x{{ $withdraws[$i]->date }}">
                             {{ method_field('DELETE') }}
                             {{  csrf_field() }}
                             <button type="submit" class="btn btn-danger">Deletar</button>
@@ -131,18 +138,6 @@
     </table>
 
 <script>
-    function formatCPF(cpf){
-        if (cpf.length > 14) cpf = cpf.slice(0, 14);
-        cpf = cpf.replace(/[^\d]/g, "");
-        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-    }
-
-    let input = document.querySelector('.cpf-mask');
-    input.addEventListener('keyup', e => {
-        let res = formatCPF(e.target.value);
-        e.target.value = res;
-    });
-
     function formatTime(t){
         if (t.length > 5) t = t.slice(0, 5);
         t = t.replace(/[^\d]/g, "");
