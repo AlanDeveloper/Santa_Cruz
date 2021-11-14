@@ -17,7 +17,7 @@
                         {{  csrf_field() }}
                         <div class="col-md-12">
                             <label for="validationCustom01" class="form-label">Nome</label>
-                            <input type="text" name="name" class="form-control" id="validationCustom01" placeholder="Preencha com o nome do medicamentamento" required>
+                            <input type="text" name="name" class="form-control" id="validationCustom01" placeholder="Preencha com o nome do medicamento" required>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -25,7 +25,7 @@
                         <div class="col-md-6">
                             <label for="validationCustom02" class="form-label">Quantidade</label>
                             <div class="input-group has-validation">
-                                <input type="text" name="amount" class="form-control" id="validationCustom02" placeholder="0" required>
+                                <input type="number" name="amount" class="form-control" id="validationCustom02" placeholder="Preencha a quantidade do medicamento" required>
                                 <div class="invalid-feedback">
                                     É necessário preencher o campo corretamente!
                                 </div>
@@ -36,6 +36,7 @@
                             <label for="validationCustom03" class="form-label">Enfermeiro Responsável</label>
                             <!-- <input type="text" name="cpfNurse" class="form-control" id="validationCustom03" placeholder="000.000.000-00" required> -->
                             <select name="cpfNurse" id="validationCustom03" class="form-select form-control" required>
+                                <option>Selecione um enfermeiro</option>
                                 @foreach ($nurses as $nurse)
                                     <option value="{{ $nurse->cpf }}"> {{ $nurse->name }}</option>
                                 @endforeach
@@ -47,7 +48,7 @@
 
                         <div class="col-md-12">
                             <label for="validationCustom04" class="form-label">Descrição</label>
-                            <textarea name="description" id="validationCustom04" class="form-control" rows="10" required></textarea>
+                            <textarea name="description" id="validationCustom04" class="form-control" rows="5" placeholder="Preencha com uma breve descrição" required></textarea>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>

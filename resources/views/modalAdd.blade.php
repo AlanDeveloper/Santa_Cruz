@@ -88,7 +88,7 @@
 
                         <div class="col-md-6">
                             <label for="validationCustom07" class="form-label">Experiência</label>
-                            <select multiple class="form-control" name="experience" id="exampleFormControlSelect2">
+                            <select class="form-select form-control" name="experience" id="exampleFormControlSelect2">
                                 <option value="true">Sim</option>
                                 <option value="false">Não</option>
                             </select>
