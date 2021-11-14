@@ -14,7 +14,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" action="/exam" class="row g-3 needs-validation" novalidate>
-                        {{  csrf_field() }}
+                        @csrf
                         <div class="col-md-12">
                             <label for="validationCustom01" class="form-label">Nome</label>
                             <input type="text" name="name" class="form-control" id="validationCustom01" placeholder="Preencha com o nome do exame" required>
@@ -25,7 +25,7 @@
 
                         <div class="col-md-12">
                             <label for="validationCustom04" class="form-label">Descrição</label>
-                            <textarea name="description" id="validationCustom04" class="form-control" rows="10" required></textarea>
+                            <textarea name="description" id="validationCustom04" class="form-control" placeholder="Preencha com uma breve descrição" rows="5" required></textarea>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -34,6 +34,44 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                             <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Formulário de atualização</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/exam" class="row g-3 needs-validation" novalidate>
+                        @method('PUT')
+                        @csrf
+                        <div class="col-md-12">
+                            <label for="validationCustom01" class="form-label">Nome</label>
+                            <input type="text" name="name" class="form-control" id="validationCustom01" placeholder="Preencha com o nome do exame" required>
+                            <div class="invalid-feedback">
+                                É necessário preencher o campo corretamente!
+                            </div>
+                        </div>                  
+
+                        <div class="col-md-12">
+                            <label for="validationCustom04" class="form-label">Descrição</label>
+                            <textarea name="description" id="validationCustom04" class="form-control textarea" placeholder="Preencha com uma breve descrição" rows="5" required></textarea>
+                            <div class="invalid-feedback">
+                                É necessário preencher o campo corretamente!
+                            </div>
+                        </div>
+                       
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Atualizar</button>
                         </div>
                     </form>
                 </div>
@@ -56,9 +94,11 @@
                 <tr class="align-middle">
                     <th scope="row">{{ $i + 1 }}</th>
                     <td>{{ $exams[$i]->name }}</td>
-
+                    <td>
+                        <button type="button" class="btn btn-warning text-light modalEdit" data-bs-toggle="modal" data-bs-target="#modal-editar" data-bs-content="{{ json_encode($exams[$i]) }}">Editar</button>
+                    </td>
                     <td> 
-                        <form method="post" class="delete_form" action="/exams/{{ $exams[$i]->id }}">
+                        <form method="post" class="delete_form" action="/exam/{{ $exams[$i]->id }}">
                             {{ method_field('DELETE') }}
                             {{  csrf_field() }}
                             <button type="submit" class="btn btn-danger">Deletar</button>
@@ -74,5 +114,24 @@
             @endif
         </tbody>
     </table>
+
+    <script>
+        let openModalInputs = document.querySelectorAll('.modalEdit');
+        openModalInputs.forEach(i => {
+            i.addEventListener('click', (e) => {
+                let data = JSON.parse(i.getAttribute('data-bs-content'));
+                let inputs = document.querySelectorAll('#modal-editar input');
+                document.querySelector('#modal-editar form').setAttribute('ACTION', `${window.location.href}/${data.id}`);
+                inputs.forEach(inp => {
+                    for (let key in data) {
+                        if (inp.getAttribute('name') === key) {
+                            inp.value = data[key];
+                        }
+                    }
+                });
+                document.querySelector('.textarea').value = data['description'];
+            });
+        });
+    </script>
 
 @endsection

@@ -21,6 +21,11 @@ class ExamController extends Controller
         return redirect('/exam');
     }
 
+    public function update(Request $request, $id) {
+        Exam::where('id', $id)->update($request->except(['_method', '_token']));
+        return redirect('/exam');
+    }
+
     public function delete($id) {
         Exam::where('id', $id)->delete();
 

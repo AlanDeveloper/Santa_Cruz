@@ -78,6 +78,6 @@ Route::group(['prefix' => 'withdraw'], function () {
 Route::group(['prefix' => 'exam'], function () {
     Route::get('/', [ExamController::class, 'index']);
     Route::post('/', [ExamController::class, 'store']);
-    // Route::put('/{id}', [ExamController::class, 'update']);
+    Route::put('/{id}', [ExamController::class, 'update']);
     Route::delete('/{id}', [ExamController::class, 'delete']);
 });
