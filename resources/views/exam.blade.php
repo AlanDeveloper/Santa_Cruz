@@ -24,8 +24,8 @@
                         </div>                  
 
                         <div class="col-md-12">
-                            <label for="validationCustom04" class="form-label">Descrição</label>
-                            <textarea name="description" id="validationCustom04" class="form-control" placeholder="Preencha com uma breve descrição" rows="5" required></textarea>
+                            <label for="validationCustom02" class="form-label">Descrição</label>
+                            <textarea name="description" id="validationCustom02" class="form-control" placeholder="Preencha com uma breve descrição" rows="5" required></textarea>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -54,8 +54,8 @@
                         @method('PUT')
                         @csrf
                         <div class="col-md-12">
-                            <label for="validationCustom01" class="form-label">Nome</label>
-                            <input type="text" name="name" class="form-control" id="validationCustom01" placeholder="Preencha com o nome do exame" required>
+                            <label for="validationCustom03" class="form-label">Nome</label>
+                            <input type="text" name="name" class="form-control" id="validationCustom03" placeholder="Preencha com o nome do exame" required>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -116,6 +116,25 @@
     </table>
 
     <script>
+        (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+            })
+        })();
         let openModalInputs = document.querySelectorAll('.modalEdit');
         openModalInputs.forEach(i => {
             i.addEventListener('click', (e) => {

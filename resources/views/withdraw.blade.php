@@ -28,8 +28,8 @@
                         {{  csrf_field() }}
                         <div class="col-md-6">
                             <label for="validationCustom01" class="form-label">Paciente</label>
-                            <select name="cpfPac" id="validationCustom03" class="form-select form-control" required>
-                                <option>Selecione o paciente</option>
+                            <select name="cpfPac" id="validationCustom01" class="form-select" required>
+                                <option value="">Selecione o paciente</option>
                                 @foreach ($patients as $pat)
                                     <option value="{{ $pat->cpfPac }}">{{ $pat->namePac }}</option>
                                 @endforeach
@@ -40,8 +40,8 @@
                         </div>
                         <div class="col-md-6">
                             <label for="validationCustom02" class="form-label">Enfermeiro</label>
-                            <select name="cpfNurse" id="validationCustom02" class="form-select form-control" required>
-                                <option>Selecione um enfermeiro</option>
+                            <select name="cpfNurse" id="validationCustom02" class="form-select" required>
+                                <option value="">Selecione um enfermeiro</option>
                                 @foreach ($nurses as $nurse)
                                     <option value="{{ $nurse->cpf }}"> {{ $nurse->nameNurse }}</option>
                                 @endforeach
@@ -49,8 +49,8 @@
                         </div>
                         <div class="col-md-6">
                             <label for="validationCustom03" class="form-label">Medicamento</label>
-                            <select name="idMedicament" id="validationCustom03" class="form-select form-control" required>
-                                <option>Selecione o medicamento</option>
+                            <select name="idMedicament" id="validationCustom03" class="form-select" required>
+                                <option value="">Selecione o medicamento</option>
                                 @foreach ($medicaments as $med)
                                     <option value="{{ $med->idMed }}">{{ $med->nameMed }}({{ $med->amountMed }})</option>
                                 @endforeach
@@ -86,9 +86,9 @@
                         @method('PUT')
                         @csrf
                         <div class="col-md-6">
-                            <label for="validationCustom01" class="form-label">Paciente</label>
-                            <select name="cpfPac" id="validationCustom03" class="form-select form-control" required>
-                                <option>Selecione o paciente</option>
+                            <label for="validationCustom05" class="form-label">Paciente</label>
+                            <select name="cpfPac" id="validationCustom05" class="form-select" required>
+                                <option value="">Selecione o paciente</option>
                                 @foreach ($patients as $pat)
                                     <option value="{{ $pat->cpfPac }}">{{ $pat->namePac }}</option>
                                 @endforeach
@@ -98,26 +98,26 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="validationCustom02" class="form-label">Enfermeiro</label>
-                            <select name="cpfNurse" id="validationCustom02" class="form-select form-control" required>
-                                <option>Selecione um enfermeiro</option>
+                            <label for="validationCustom06" class="form-label">Enfermeiro</label>
+                            <select name="cpfNurse" id="validationCustom06" class="form-select" required>
+                                <option value="">Selecione um enfermeiro</option>
                                 @foreach ($nurses as $nurse)
                                     <option value="{{ $nurse->cpf }}"> {{ $nurse->nameNurse }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="validationCustom03" class="form-label">Medicamento</label>
-                            <select name="idMedicament" id="validationCustom03" class="form-select form-control" required>
-                                <option>Selecione o medicamento</option>
+                            <label for="validationCustom07" class="form-label">Medicamento</label>
+                            <select name="idMedicament" id="validationCustom07" class="form-select" required>
+                                <option value="">Selecione o medicamento</option>
                                 @foreach ($medicaments as $med)
                                     <option value="{{ $med->idMed }}">{{ $med->nameMed }}({{ $med->amountMed }})</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="validationCustom04" class="form-label">Quantidade</label>
-                            <input type="number" name="amount" class="form-control" id="validationCustom04" placeholder="Preencha a quantidade para retirada" required>
+                            <label for="validationCustom08" class="form-label">Quantidade</label>
+                            <input type="number" name="amount" class="form-control" id="validationCustom08" placeholder="Preencha a quantidade para retirada" required>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -184,6 +184,25 @@
     </table>
 
 <script>
+    (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+        }, false)
+        })
+    })();
     let openModalInputs = document.querySelectorAll('.modalEdit');
     openModalInputs.forEach(i => {
         i.addEventListener('click', (e) => {

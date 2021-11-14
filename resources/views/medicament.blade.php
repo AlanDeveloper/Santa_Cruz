@@ -34,9 +34,8 @@
 
                         <div class="col-md-6">
                             <label for="validationCustom03" class="form-label">Enfermeiro Responsável</label>
-                            <!-- <input type="text" name="cpfNurse" class="form-control" id="validationCustom03" placeholder="000.000.000-00" required> -->
-                            <select name="cpfNurse" id="validationCustom03" class="form-select form-control" required>
-                                <option>Selecione um enfermeiro</option>
+                            <select name="cpfNurse" id="validationCustom03" class="form-select" required>
+                                <option value="">Selecione um enfermeiro</option>
                                 @foreach ($nurses as $nurse)
                                     <option value="{{ $nurse->cpf }}"> {{ $nurse->name }}</option>
                                 @endforeach
@@ -77,16 +76,16 @@
                         @method('PUT')
                         @csrf
                         <div class="col-md-12">
-                            <label for="validationCustom01" class="form-label">Nome</label>
-                            <input type="text" name="name" class="form-control" id="validationCustom01" placeholder="Preencha com o nome do medicamento" required>
+                            <label for="validationCustom05" class="form-label">Nome</label>
+                            <input type="text" name="name" class="form-control" id="validationCustom05" placeholder="Preencha com o nome do medicamento" required>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="validationCustom02" class="form-label">Quantidade</label>
+                            <label for="validationCustom06" class="form-label">Quantidade</label>
                             <div class="input-group has-validation">
-                                <input type="number" name="amount" class="form-control" id="validationCustom02" placeholder="Preencha a quantidade do medicamento" required>
+                                <input type="number" name="amount" class="form-control" id="validationCustom06" placeholder="Preencha a quantidade do medicamento" required>
                                 <div class="invalid-feedback">
                                     É necessário preencher o campo corretamente!
                                 </div>
@@ -94,10 +93,9 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="validationCustom03" class="form-label">Enfermeiro Responsável</label>
-                            <!-- <input type="text" name="cpfNurse" class="form-control" id="validationCustom03" placeholder="000.000.000-00" required> -->
-                            <select name="cpfNurse" id="validationCustom03" class="form-select form-control" required>
-                                <option>Selecione um enfermeiro</option>
+                            <label for="validationCustom07" class="form-label">Enfermeiro Responsável</label>
+                            <select name="cpfNurse" id="validationCustom07" class="form-select" required>
+                                <option value="">Selecione um enfermeiro</option>
                                 @foreach ($nurses as $nurse)
                                     <option value="{{ $nurse->cpf }}"> {{ $nurse->name }}</option>
                                 @endforeach
@@ -108,8 +106,8 @@
                         </div>
 
                         <div class="col-md-12">
-                            <label for="validationCustom04" class="form-label">Descrição</label>
-                            <textarea name="description" id="validationCustom04" class="form-control  textarea" rows="5" placeholder="Preencha com uma breve descrição" required></textarea>
+                            <label for="validationCustom08" class="form-label">Descrição</label>
+                            <textarea name="description" id="validationCustom08" class="form-control  textarea" rows="5" placeholder="Preencha com uma breve descrição" required></textarea>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -167,6 +165,26 @@
     </table>
 
     <script>
+
+        (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+            })
+        })();
         let openModalInputs = document.querySelectorAll('.modalEdit');
         openModalInputs.forEach(i => {
             i.addEventListener('click', (e) => {
