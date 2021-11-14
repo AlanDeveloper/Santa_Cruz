@@ -43,22 +43,38 @@ class WithdrawController extends Controller
         $med_id = $request->input('idMedicament');
         $quantidade = $request->input('amount');
 
-        if(!is_numeric($quantidade)) return redirect('/withdraw')->withErrors(['amount' => 'Erro: Quantidade inválida.']);
-
         $medicamento = Medicament::where('id', $med_id)->first();
         $nova_quantidade = ($medicamento->amount - intval($quantidade));
         if ($nova_quantidade >= 0) {
-            $med_request = [
-                'amount' => $nova_quantidade
-            ];
-
-            $data = $request->input('data') . ' ' . $request->input('hora');
-            Medicament::where('id', $med_id)->update($med_request);
-            Withdraw::create($request->all() + ['date' => $data]);
+            Medicament::where('id', $med_id)->update(['amount' => $nova_quantidade]);
+            Withdraw::create($request->all() + ['date' => date("Y-m-d H:i:s")]);
             return redirect('/withdraw');
         } else {
             return redirect('/withdraw')->withErrors(["negativo" => "Erro: Quantidade indisponível."]);
         }
+    }
+
+    public function update(Request $request, $id) {
+        $withdraw = Withdraw::where([
+            ['cpfNurse', explode('x', $id)[0]],
+            ['cpfPac', explode('x', $id)[1]],
+            ['idMedicament', explode('x', $id)[2]],
+            ['date', explode('x', $id)[3]]
+        ])->first();
+        $medicament = Medicament::where('id', explode('x', $id)[2])->first();
+        if ($withdraw->amount > $request->input('amount')) {
+            Medicament::where('id', explode('x', $id)[2])->update(['amount' => $medicament->amount + ($withdraw->amount - $request->input('amount'))]);
+        } else {
+            Medicament::where('id', explode('x', $id)[2])->update(['amount' =>  $medicament->amount - ($request->input('amount') - $withdraw->amount)]);
+        }
+
+        Withdraw::where([
+            ['cpfNurse', explode('x', $id)[0]],
+            ['cpfPac', explode('x', $id)[1]],
+            ['idMedicament', explode('x', $id)[2]],
+            ['date', explode('x', $id)[3]]
+        ])->update($request->except(['_method', '_token']));
+        return redirect('/withdraw');
     }
 
     public function delete($id) {

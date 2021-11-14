@@ -71,7 +71,7 @@ Route::group(['prefix' => 'appointment'], function () {
 Route::group(['prefix' => 'withdraw'], function () {
     Route::get('/', [WithdrawController::class, 'index']);
     Route::post('/', [WithdrawController::class, 'store']);
-    // Route::put('/{id}', [WithdrawController::class, 'update']);
+    Route::put('/{id}', [WithdrawController::class, 'update']);
     Route::delete('/{id}', [WithdrawController::class, 'delete']);
 });
 
