@@ -12,12 +12,12 @@ class MedicamentController extends Controller
         $nurses = Nurse::select('cpf', 'name as nameNurse');
 
         if ($request->input("search")) {
-            Medicament::where("name", "ILIKE", "%" . $request->input("search") . "%")->orderBy("name", "desc");
+            $medicament = Medicament::where("name", "ILIKE", "%" . $request->input("search") . "%")->orderBy("name", "desc");
         } else {
-            Medicament::orderBy("name", "desc");
+            $medicament = Medicament::orderBy("name", "desc");
         }
 
-        $data['medicaments'] = Medicament::joinSub($nurses, 'nurses', function ($join) {
+        $data['medicaments'] = $medicament->joinSub($nurses, 'nurses', function ($join) {
             $join->on('medicament.cpfNurse', '=', 'nurses.cpf');
         })->get();
 
