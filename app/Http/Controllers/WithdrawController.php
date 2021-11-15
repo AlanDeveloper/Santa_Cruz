@@ -46,6 +46,7 @@ class WithdrawController extends Controller
         $medicamento = Medicament::where('id', $med_id)->first();
         $nova_quantidade = ($medicamento->amount - intval($quantidade));
         if ($nova_quantidade >= 0) {
+            date_default_timezone_set('America/Sao_Paulo');
             Medicament::where('id', $med_id)->update(['amount' => $nova_quantidade]);
             Withdraw::create($request->all() + ['date' => date("Y-m-d H:i:s")]);
             return redirect('/withdraw');
