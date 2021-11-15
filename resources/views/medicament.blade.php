@@ -17,7 +17,7 @@
                         @csrf
                         <div class="col-md-12">
                             <label for="validationCustom01" class="form-label">Nome</label>
-                            <input type="text" name="name" class="form-control" id="validationCustom01" placeholder="Preencha com o nome do medicamento" required>
+                            <input type="text" name="name" class="form-control" id="validationCustom01" maxlength="100" placeholder="Preencha com o nome do medicamento" required>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -47,7 +47,7 @@
 
                         <div class="col-md-12">
                             <label for="validationCustom04" class="form-label">Descrição</label>
-                            <textarea name="description" id="validationCustom04" class="form-control" rows="5" placeholder="Preencha com uma breve descrição" required></textarea>
+                            <textarea name="description" id="validationCustom04" class="form-control" rows="5" maxlength="500" placeholder="Preencha com uma breve descrição" required></textarea>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -77,7 +77,7 @@
                         @csrf
                         <div class="col-md-12">
                             <label for="validationCustom05" class="form-label">Nome</label>
-                            <input type="text" name="name" class="form-control" id="validationCustom05" placeholder="Preencha com o nome do medicamento" required>
+                            <input type="text" name="name" class="form-control" id="validationCustom05" maxlength="100" placeholder="Preencha com o nome do medicamento" required>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -107,7 +107,7 @@
 
                         <div class="col-md-12">
                             <label for="validationCustom08" class="form-label">Descrição</label>
-                            <textarea name="description" id="validationCustom08" class="form-control  textarea" rows="5" placeholder="Preencha com uma breve descrição" required></textarea>
+                            <textarea name="description" id="validationCustom08" class="form-control  textarea" rows="5" maxlength="500" placeholder="Preencha com uma breve descrição" required></textarea>
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>

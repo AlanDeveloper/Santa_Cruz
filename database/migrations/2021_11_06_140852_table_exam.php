@@ -17,7 +17,7 @@ class TableExam extends Migration
             $table->id();
 
             $table->string('name', 100);
-            $table->text('description');
+            $table->text('description', 500);
             $table->timestamps();
         });
     }
