@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="validationCustom02" class="form-label">Recepcionista Responsável</label>
+                            <label for="validationCustom02" class="form-label">Paciente</label>
                             <select name="cpfPac" id="validationCustom02" class="form-select" required>
                                 <option value="">Selecione um paciente</option>
                                 @foreach ($patients as $patient)
