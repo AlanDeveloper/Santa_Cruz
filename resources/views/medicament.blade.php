@@ -200,7 +200,7 @@
                 });
                 document.querySelector('.textarea').value = data['description'];
 
-                let options = document.querySelectorAll('option');
+                let options = document.querySelectorAll('#modal-editar form option');
                 options.forEach(opt => {
                     if (opt.getAttribute('value') === data.cpfNurse) opt.setAttribute('selected', 'true');
                 });
