@@ -28,7 +28,7 @@ class ReceptionistController extends Controller
     }
 
     public function delete($id) {
-        Receptionist::where('id', $id)->delete();
+        Receptionist::where('cpf', $id)->delete();
 
         return redirect('/receptionist');
     }
