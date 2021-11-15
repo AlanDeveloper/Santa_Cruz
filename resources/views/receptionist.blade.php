@@ -50,6 +50,6 @@
         </tbody>
     </table>
 
-    @include('modalEdit', ['type' => 'patient'])
+    @include('modalEdit', ['type' => 'receptionist'])
 
 @endsection

@@ -89,7 +89,7 @@
 
                         <div class="col-md-6">
                             <label for="validationCustom22" class="form-label">Experiência</label>
-                            <select multiple class="form-control" name="experience" id="validationCustom22">
+                            <select class="form-select" name="experience" id="validationCustom22">
                                 <option value="true">Sim</option>
                                 <option value="false">Não</option>
                             </select>
