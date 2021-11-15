@@ -19,7 +19,7 @@ class TableTakeExam extends Migration
             $table->datetime('date');
             $table->integer('idAppointment');
             $table->integer('idExam');
-            $table->text('result');
+            $table->text('result')->nullable();
             $table->string('cpfNurse', 14);
 
             $table->foreign('cpfNurse')->references('cpf')->on('nurse')->onDelete('cascade');
