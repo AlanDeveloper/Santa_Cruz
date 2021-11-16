@@ -6,12 +6,18 @@ use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Models\Receptionist;
 use App\Models\Patient;
+use App\Models\Medic;
+use App\Models\Nurse;
+use App\Models\Exam;
 
 class AppointmentController extends Controller
 {
     public function index() {
         $recepcionistas = Receptionist::select('cpf','name as nameRec');
         $pacientes = Patient::select('cpf as cpfPac', 'name as namePac');
+        $medicos = Medic::select('cpf as cpfMed', 'name as nameMed');
+        $nurses = Nurse::select('cpf as cpfNurse', 'name as nameNurse');
+        $exams = Exam::select('id as idExam', 'name as nameExam');
         
         $appointments = Appointment::joinSub($pacientes, 'pacientes', function ($join) {
             $join->on('appointment.cpfPac', '=', 'pacientes.cpfPac');
@@ -22,6 +28,9 @@ class AppointmentController extends Controller
         $data['appointments'] = $appointments->orderBy('appointment.date', 'DESC')->get();
         $data['receptionists'] = $recepcionistas->get();
         $data['patients'] = $pacientes->get();
+        $data['medics'] = $medicos->get();
+        $data['nurses'] = $nurses->get();
+        $data['exams'] = $exams->get();
 
         return view('appointment', $data);
     }

@@ -14,6 +14,10 @@
 @section('content')
     <h1 class="mt-5 mb-5">Lista de consultas</h1>
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">Cadastrar Consulta</button>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-exam-cadastrar">Fazer exame</button>
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-performs-cadastrar">Fazer consulta</button>
+    @include('modalPerforms')
+    @include('modalExam')
 
     <!-- Modal -->
     <div class="modal fade" id="modal-cadastrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
