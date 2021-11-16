@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" class="row g-3 needs-validation" novalidate>
+                <form method="post" action="\appointment\performs" class="row g-3 needs-validation" novalidate>
                     {{  csrf_field() }}
                     <div class="col-md-6">
                         <label for="validationCustom01" class="form-label">Médico Responsável</label>
@@ -33,6 +33,16 @@
                             É necessário preencher o campo corretamente!
                         </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <label for="validationCustom04" class="form-label">Data</label>
+                        <input class="form-control" type="date" name="data" id="data" required maxlength="10">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="validationCustom05" class="form-label">Hora</label>
+                        <input class="hour-mask form-control" type="text" name="hora" id="hora" required maxlength="5" placeholder="__:__">
+                    </div>                    
 
                     <div class="col-md-12">
                         <label for="validationCustom03" class="form-label">Diagnóstico</label>

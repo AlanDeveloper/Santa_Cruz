@@ -9,6 +9,9 @@ use App\Models\Patient;
 use App\Models\Medic;
 use App\Models\Nurse;
 use App\Models\Exam;
+use App\Models\TakeExam;
+use App\Models\Performs;
+
 
 class AppointmentController extends Controller
 {
@@ -38,6 +41,27 @@ class AppointmentController extends Controller
     public function store(Request $request) {
         date_default_timezone_set('America/Sao_Paulo');
         Appointment::create($request->all() + ['date' => date("Y-m-d H:i:s")]);
+
+        return redirect('/appointment');
+    }
+
+    public function storeExam(Request $request) {
+
+        $date = [
+            'date' => $request->input('data') . ' ' . $request->input('hora') . ":00"
+        ];
+        TakeExam::create($request->all() + $date);
+
+        return redirect('/appointment');
+    }
+
+
+    public function storePerforms(Request $request) {
+        $date = [
+            'date' => $request->input('data') . ' ' . $request->input('hora') . ":00"
+        ];
+
+        Performs::create($request->all() + $date);
 
         return redirect('/appointment');
     }

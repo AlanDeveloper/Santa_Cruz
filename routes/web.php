@@ -64,7 +64,9 @@ Route::group(['prefix' => 'receptionist'], function () {
 Route::group(['prefix' => 'appointment'], function () {
     Route::get('/', [AppointmentController::class, 'index']);
     Route::post('/', [AppointmentController::class, 'store']);
-    // Route::put('/{id}', [AppointmentController::class, 'update']);
+    Route::post('/exam', [AppointmentController::class, 'storeExam']);
+    Route::post('/performs', [AppointmentController::class, 'storePerforms']);
+    //Route::put('/{id}', [AppointmentController::class, 'update']);
     Route::delete('/{id}', [AppointmentController::class, 'delete']);
 });
 

@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" class="row g-3 needs-validation" novalidate>
+                <form method="post" action="\appointment\exam" class="row g-3 needs-validation" novalidate>
                     {{  csrf_field() }}
                     <div class="col-md-6">
                         <label for="validationCustom01" class="form-label">Enfermeiro Responsável</label>
@@ -44,6 +44,13 @@
                         <div class="invalid-feedback">
                             É necessário preencher o campo corretamente!
                         </div>
+
+                        <label for="validationCustom04" class="form-label">Data</label>
+                        <input class="form-control" type="date" name="data" id="data" required maxlength="10">
+      
+                        <label for="validationCustom05" class="form-label">Hora</label>
+                        <input class="hour-mask form-control" type="text" name="hora" id="hora" required maxlength="5" placeholder="__:__">
+
                     </div>
 
                     <div class="col-md-6">
@@ -106,6 +113,18 @@
     input = document.querySelector('.tel-mask');
     input.addEventListener('keyup', e => {
         let res = formatTEL(e.target.value);
+        e.target.value = res;
+    });
+
+    function formatHour(hour){
+        if (hour.length > 5) hour = hour.slice(0, 5);
+        hour = hour.replace(/[^\d]/g, "");
+        return hour.replace(/(\d{2})(\d{2})/, "$1:$2");
+    }
+
+    input = document.querySelector('.hour-mask');
+    input.addEventListener('keyup', e => {
+        let res = formathour(e.target.value);
         e.target.value = res;
     });
 </script>
