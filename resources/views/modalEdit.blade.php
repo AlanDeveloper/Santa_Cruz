@@ -102,7 +102,7 @@
                     @if ($type == 'nurse')
                         <div class="col-md-6">
                             <label for="validationCustom23" class="form-label">Endereço da faculdade</label>
-                            <input type="text" name="collegeAddress" class="form-control" id="validationCustom23" maxlength="100" placeholder="Preencha com endereço da faculdade" required>
+                            <input type="text" name="collegeAddress" class="form-control" id="validationCustom23" maxlength="100" placeholder="Preencha com endereço da faculdade">
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>
@@ -110,7 +110,7 @@
 
                         <div class="col-md-6">
                             <label for="validationCustom24" class="form-label">Semestre</label>
-                            <input type="number" name="semester" class="form-control" id="validationCustom24" maxlength="1" placeholder="Preencha com seu semestre" required>
+                            <input type="number" name="semester" class="form-control" id="validationCustom24" maxlength="1" placeholder="Preencha com seu semestre">
                             <div class="invalid-feedback">
                                 É necessário preencher o campo corretamente!
                             </div>

@@ -16,7 +16,7 @@ class TableMedicament extends Migration
         Schema::create('medicament', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name', 100);
+            $table->string('name', 100)->unique();
             $table->integer('amount');
             $table->string('description', 500);
             $table->string('cpfNurse', 14)->nullable();
@@ -25,6 +25,8 @@ class TableMedicament extends Migration
 
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE medicament ADD CONSTRAINT check_medicament CHECK (amount >= 0);');
     }
 
     /**

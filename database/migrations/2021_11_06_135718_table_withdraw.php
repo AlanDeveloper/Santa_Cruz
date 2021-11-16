@@ -27,6 +27,8 @@ class TableWithdraw extends Migration
 
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE withdraw ADD CONSTRAINT check_withdraw CHECK (amount > 0);');
     }
 
     /**
