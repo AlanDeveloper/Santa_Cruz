@@ -8,6 +8,7 @@ use App\Http\Controllers\NurseController;
 use App\Http\Controllers\MedicController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ReceptionistController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -82,4 +83,9 @@ Route::group(['prefix' => 'exam'], function () {
     Route::post('/', [ExamController::class, 'store']);
     Route::put('/{id}', [ExamController::class, 'update']);
     Route::delete('/{id}', [ExamController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'user-area'], function () {
+    Route::get('/', [UserController::class, 'index']);
+    Route::post('/', [UserController::class, 'profile']);
 });
